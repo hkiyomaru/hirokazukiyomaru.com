@@ -9,6 +9,7 @@ var cleanCSS = require('gulp-clean-css')
 var concat = require('gulp-concat');
 var imagemin = require('gulp-imagemin');
 var webserver = require('gulp-webserver');
+var runSequence = require('run-sequence');
 
 
 var paths = {
@@ -76,7 +77,7 @@ gulp.task('image', function(){
 });
 
 gulp.task('clean', function(callback){
-    del([build.root], callback);
+    return del([build.root], callback);
 });
 
 gulp.task('webserver', function(){
@@ -108,5 +109,5 @@ gulp.task('start', function(callback) {
 	'webserver',
 	'watch',
 	callback
-    )
+    );
 });
