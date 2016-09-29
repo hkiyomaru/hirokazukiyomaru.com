@@ -1,10 +1,12 @@
 {
   "name": "hirokazukiyomaru.com",
   "version": "1.0.0",
-  "description": "",
+  "description": "Self-introduction page",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "build": "gulp build",
+      "start": "gulp start",
+      "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Hirokazu Kiyomaru",
   "license": "MIT",
