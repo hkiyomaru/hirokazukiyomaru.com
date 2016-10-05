@@ -8,6 +8,7 @@ var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 var cleanCSS = require('gulp-clean-css')
 var concat = require('gulp-concat');
+var coffee = require('gulp-coffee');
 var imagemin = require('gulp-imagemin');
 var webserver = require('gulp-webserver');
 var runSequence = require('run-sequence');
@@ -60,7 +61,8 @@ gulp.task('css', function(){
 });
 
 gulp.task('js', function(){
-  return gulp.src(path.join(source.js, '**/*.js'))
+  return gulp.src(path.join(source.js, '**/*.coffee'))
+  .pipe(coffee())
   .pipe(uglify())
   .pipe(concat('all.min.js'))
   .pipe(gulp.dest(build.js));
@@ -94,7 +96,7 @@ gulp.task('webserver', function(){
 gulp.task('watch', function(){
   gulp.watch(path.join(source.html, '**/*.html'), ['html']);
   gulp.watch(path.join(source.css, '**/*.scss'), ['css']);
-  gulp.watch(path.join(source.js, '**/*.js'), ['js']);
+  gulp.watch(path.join(source.js, '**/*.coffee'), ['js']);
 });
 
 gulp.task('build', function(callback){
