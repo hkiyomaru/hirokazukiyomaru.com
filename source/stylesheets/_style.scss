@@ -1,5 +1,10 @@
-@mixin round{
+@mixin round {
 	border-radius: 100%;
+}
+
+@mixin hover_link {
+	color: $linkColor;
+	text-decoration: none;
 }
 
 body {
@@ -103,26 +108,31 @@ body {
 
 section {
 	color: $defaultColor;
-	a {
-		color: $defaultColor;
-		&:hover {
-			color: $linkColor;
-			text-decoration: none;
-		}
-	}
 	h2 {
 		margin-top: 25px;
 		font-size: $subTitleSize;
 		text-decoration: underline;
 	}
-	h3 {
+	& .main {
 		margin-top: 15px;
 		margin-bottom: 3px;
 		font-size: $subSubTitleSize;
+		& a {
+			color: $defaultColor;
+			&:hover {
+				@include hover_link;
+			}
+		}
 	}
-	h4 {
+	& .sub {
 		margin-top: 0px;
 		font-size: $defaultSize;
+		& a {
+			color: $defaultColor;
+			&:hover {
+				@include hover_link;
+			}
+		}
 	}
 }
 
