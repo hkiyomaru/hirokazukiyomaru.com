@@ -1,3 +1,4 @@
+# Loader
 wrap = $(".wrap")
 loader_bg = $(".loader-bg")
 loader = $(".loader")
@@ -42,7 +43,3 @@ stopload = ->
   loader
   .delay(600)
   .fadeOut(300)
-
-$("#showMore").click ->
-  $(".more")
-  .slideToggle()
