@@ -1,78 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hirokazu KIYOMARU</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link href="stylesheets/all.min.css" rel="stylesheet">
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hirokazu Kiyomaru</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="stylesheets/all.min.css" rel="stylesheet">
+  </head>
 
-<body>
-  <div class="loader-bg">
-    <div class="loader">
-      <img src="images/loader.gif" alt="Now loading...">
+  <body>
+    <!-- Loader -->
+    <div class="loader-bg">
+      <div class="loader">
+        <img src="images/loader.gif" alt="Now Loading">
+      </div>
     </div>
-  </div>
-  <div class="container wrap">
-    <header class="header">
-      <div class="icon">
-        <img class="portrait" src="images/kiyomaru.jpg" alt="Hirokazu KIYOMARU">
-        <div class="mask">
-          <div class="caption">
-            <button id="showMore">learn more<br>about me</button>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <h1>Hirokazu Kiyomaru</h1>
+      </div>
+    </header>
+    <div class="container">
+      <!-- Profile -->
+      <div class="profile row">
+        <div class="portrait col-sm-4 col-sm-push-8">
+          <img src="images/kiyomaru.jpg" alt="Hirokazu Kiyomaru">
+        </div>
+        <div class="selfintroduction col-sm-8 col-sm-pull-4">
+          <div class="text">
+            <p>
+              Thank you for visiting.
+            </p>
+            <p>
+              I'm Hirokazu Kiyomaru, a master's student (first year) at Kyoto University.
+              My current research interests are in deep learning and the application to natural language processing.
+            </p>
+            <p>
+              I also interested in IT competitions such as Hackathons.
+              I have experience in Web development (front-end and back-end), robot programming, and implementation of machine learning algorithms.
+              If you have ideas and enthusiasm, I would love to participate in them with you.
+            </p>
+            <p>
+              Please feel free to contact me!
+            </p>
           </div>
         </div>
       </div>
-      <h1>Hirokazu KIYOMARU</h1>
-    </header>
 
-    <section class="more">
       <hr>
-      <p>Thanks for visiting my profile.</p>
-      <p>I'm Hirokazu Kiyomaru, an undergraduate student studying about Machine Learning.</p>
-      <p>My main interest is Natural Language Processing (NLP), especially Natural Language Translation (NLT).</p>
-      <p>I also love engenering product, reading, and listening music.</p>
-      <p>Please feel free to contact me.</p>
-      </section>
 
-      <section>
-        <hr>
-        <h2>Affiliation</h2>
-        <p class="main"><a href="http://www.doshisha.ac.jp">Doshisha University</a></p>
-        <p class="sub"> <a href="http://mm.doshisha.ac.jp">Intelligent Mechanism Laboratory</a></p>
-        <p class="main"><a href="http://wbawakate.jp">WBA Future Leaders</a></p>
-        <p class="main"><a href="https://dit-rohm.com/">DIT Doshisha Institute of Technology</a></p>
-      </section>
+      <!-- Main contents -->
+      <div class="main">
+        <section>
+          <h2>Affiliation</h2>
+          <p class="parent">Laboratory</p>
+          <p class="child"><a href="http://nlp.ist.i.kyoto-u.ac.jp/EN/">Natural Language Processing Lab.</a> (Kurohashi & Kawahara Lab.),</p>
+          <p class="child">Department of Intelligence Science and Technology,</p>
+          <p class="child">Graduate School of Informatics, <a href="http://www.kyoto-u.ac.jp/en">Kyoto University</a>, Japan</p>
+          <p class="parent">Others</p>
+          <p class="child"><a href="http://wbawakate.jp/">WBA Feature Leaders</a></p>
+          <p class="child"><a href="https://dit-rohm.com/">DIT (Doshisha Institute of Technology)</a></p>
+        </section>
 
-      <section>
-        <hr>
-        <h2>Awards</h2>
-        <p class="main">Feb. 2016.</p>
-        <p class="sub">Doshisha University Excellent Student Award 2015 (Academic)</p>
-        <p class="main">Sep. 2015.</p>
-        <p class="sub">1st Place, DHacks (DIT Summer Hackathon)</p>
-        <p class="main">Sep. 2015.</p>
-        <p class="sub">1st Place, Toyota HSR Hackathon 2015</p>
-      </section>
+        <section>
+          <h2>Education</h2>
+          <p class="parent">April 1, 2017 - Present</p>
+          <p class="child">Computer Science, Master's degree, Kyoto University, Supervisor: <a href="http://nlp.ist.i.kyoto-u.ac.jp/member/kuro/index.html">Sadao Kurohashi</a></p>
+          <p class="parent">April 1, 2013 - March 31th, 2017</p>
+          <p class="child">Computer Science, Bachelor's degree, Doshisha University, Supervisor: <a href="http://book.mkats.net/">Marie Katsurai</a></p>
+          <p class="parent">April 1, 2010 - March 31th, 2013</p>
+          <p class="child">Hiroshima Prefectural Fukuyama Seishikan High School</p>
+        </section>
 
-      <section>
-        <hr>
-        <h2>Contact</h2>
-        <p class="main"> kiyomaru[at]mm.doshisha.ac.jp</p>
-      </section>
+        <section>
+          <h2>Awards</h2>
+          <p class="parent">February 18. 2016.</p>
+          <p class="child">Doshisha University Excellent Student Award 2015 (Academic)</p>
+          <p class="parent">September 11. 2015.</p>
+          <p class="child">1st Place, DHacks (a hackathon held at Doshisha University)</p>
+          <p class="parent">September 2. 2015.</p>
+          <p class="child">1st Place, TOYOTA HSR Hackathon 2015</p>
+        </section>
+      </div>
 
-      <footer class="footer">
-        <hr>
-        <a href="https://github.com/kiyomaro927"><img class="links" src="images/GitHub-Mark-64px.png" alt="Github"></a>
-        <a href="https://facebook.com/hirokazu.kiyomaru"><img class="links" src="images/FB-f-Logo__blue_144.png" alt="Facebook"></a>
-      </footer>
+      <hr>
+
     </div>
+
+    <footer>
+      <a href="https://github.com/kiyomaro927"><img class="links" src="images/GitHub-Mark-64px.png" alt="Github"></a>
+      <a href="https://facebook.com/hirokazu.kiyomaru"><img class="links" src="images/FB-f-Logo__blue_144.png" alt="Facebook"></a>
+      <p>KYOTO UNIVERSITY, Hirokazu KIYOMARU (<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> kiyomaru[at]nlp.ist.i.kyoto-y.ac.jp)</p>
+    </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="javascripts/all.min.js"></script>
 
   </body>
-  </html>
+</html>
