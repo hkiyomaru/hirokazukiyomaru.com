@@ -1,45 +1,18 @@
-# Loader
-wrap = $(".wrap")
-loader_bg = $(".loader-bg")
-loader = $(".loader")
-h = $(window).height()
+((i, s, o, g, r, a, m) ->
+	i["GoogleAnalyticsObject"] = r
 
-$ ->
-  wrap
-  .css
-    'display': 'none'
-  loader_bg
-  .height h
-  .css
-    'display': 'block'
-  loader
-  .height h
-  .css
-    'display': 'block'
+	i[r] = i[r] or ->
+		(i[r].q = i[r].q or []).push arguments
+		return
 
-$(window).load ->
-  $('.loader-bg')
-  .delay 900
-  $('.loader-bg')
-  .fadeOut 800
-  $('.loader')
-  .delay 600
-  $('.loader')
-  .fadeOut 300
-  $('.wrap')
-  .css
-    'display': 'block'
+	i[r].l = 1 * new Date()
 
-$ ->
-  setTimeout(stopload(), 10000)
+	a = s.createElement(o)
+	m = s.getElementsByTagName(o)[0]
 
-stopload = ->
-  wrap
-  .css
-    'display': 'block'
-  loader_bg
-  .delay(900)
-  .fadeOut(800)
-  loader
-  .delay(600)
-  .fadeOut(300)
+	a.async = 1
+	a.src = g
+	m.parentNode.insertBefore a, m
+) window, document, "script", "//www.google-analytics.com/analytics.js", "ga"
+ga "create", "UA-97190726-1", "auto"
+ga "send", "pageview"
