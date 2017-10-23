@@ -25,6 +25,7 @@
 
 body {
 	color: $default_font_color;
+	font-family: 'Ubuntu', sans-serif;
 }
 
 // header
@@ -44,7 +45,9 @@ header {
 	margin-bottom: 2em;
 	.portrait {
 		margin-top: 2em;
-		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		img {
 			border-radius: 5%;
 			width: 90%;
@@ -58,16 +61,22 @@ header {
 }
 
 // main contents
+section {
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
 h2 {
 	margin-top: 1em;
 	font-size: 1.5em;
 }
 
 .parent {
+	margin-left: 0.5em;
 }
 .child {
 	margin-top: -0.8em;
-	margin-left: 3em;
+	margin-left: 2em;
 }
 
 // footer
@@ -78,11 +87,19 @@ footer {
 		margin: 0.5em 2em;
 	}
 	p {
-		margin-top: 0.5em;
+		margin-top: 1.0em;
+		margin-bottom: 2.0em;
 	}
 }
 
 // horizontal rule
 hr {
-	border-color: $default_font_color;
+	border-top: 3px dashed $default_hr_color;
+}
+
+// font-awesome
+.fa-small {
+	color: $default_font_color;
+	font-size: 0.85em;
+	width: 1.1em;
 }
