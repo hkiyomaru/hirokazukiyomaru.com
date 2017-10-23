@@ -2,8 +2,8 @@
 
 ## Preparation
 
-* Node.js	: v6.6.0
-* npm	: 3.10.3
+* Node.js	: v7.4.0
+* npm	: 4.6.1
 
 ## Getting started
 
