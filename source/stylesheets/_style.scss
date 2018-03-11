@@ -25,7 +25,7 @@
 
 body {
 	color: $default_font_color;
-	font-family: 'Ubuntu', sans-serif;
+	font-family: 'Raleway', sans-serif;
 }
 
 // header
@@ -41,10 +41,13 @@ header {
 
 // profile
 .profile {
-	margin-top: 2em;
+	display: flex;
 	margin-bottom: 2em;
+	.selfintroduction {
+		display: flex;
+		text-align: left;
+	}
 	.portrait {
-		margin-top: 2em;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -53,10 +56,6 @@ header {
 			width: 90%;
 			max-width: 13em;
 		}
-	}
-	.selfintroduction {
-		margin-top: 2em;
-		text-align: left;
 	}
 }
 
@@ -94,7 +93,7 @@ footer {
 
 // horizontal rule
 hr {
-	border-top: 3px dashed $default_hr_color;
+	border-top: 2px solid $default_hr_color;
 }
 
 // font-awesome
