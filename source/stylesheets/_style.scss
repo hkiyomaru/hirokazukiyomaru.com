@@ -25,7 +25,7 @@
 
 body {
 	color: $default_font_color;
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Cabin', sans-serif;
 }
 
 // header
@@ -68,6 +68,7 @@ section {
 h2 {
 	margin-top: 1em;
 	font-size: 1.5em;
+	text-decoration: underline;
 }
 
 .parent {
