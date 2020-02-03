@@ -1,24 +1,18 @@
 # hirokazukiyomaru.com
 
-## Preparation
+## Requirements
 
-* Node.js	: v7.4.0
-* npm	: 4.6.1
+* Node.js: v11.1.0
+* npm: 6.13.7
 
-## Getting started
+## Installation
 
 ```
 $ npm install
 ```
 
-## Run
-
-```
-$ npm run start
-```
-
 ## Build
 
 ```
-$ npm run build
+$ npx gulp
 ```
