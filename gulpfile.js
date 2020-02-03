@@ -1,117 +1,135 @@
-'use strict';
+"use strict";
 
-var del = require('del');
-var path = require('path');
-var gulp = require('gulp');
-var plumber = require('gulp-plumber');
-var uglify = require('gulp-uglify');
-var sass = require('gulp-sass');
-var cleanCSS = require('gulp-clean-css')
-var concat = require('gulp-concat');
-var coffee = require('gulp-coffee');
-var imagemin = require('gulp-imagemin');
-var webserver = require('gulp-webserver');
-var runSequence = require('run-sequence');
+// Load plugins
+const autoprefixer = require("gulp-autoprefixer");
+const browsersync = require("browser-sync").create();
+const cleanCSS = require("gulp-clean-css");
+const del = require("del");
+const gulp = require("gulp");
+const header = require("gulp-header");
+const merge = require("merge-stream");
+const plumber = require("gulp-plumber");
+const rename = require("gulp-rename");
+const sass = require("gulp-sass");
+const uglify = require("gulp-uglify");
 
+// Load package.json for banner
+const pkg = require('./package.json');
 
-var paths = {
-  source: 'source',
-  build: 'build',
-  html: '',
-  css: 'stylesheets',
-  js: 'javascripts',
-  font: 'fonts',
-  image: 'images',
-};
+// Set the banner content
+const banner = ['/*!\n',
+  ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
+  ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
+  ' * Licensed under <%= pkg.license %> (https://github.com/BlackrockDigital/<%= pkg.name %>/blob/master/LICENSE)\n',
+  ' */\n',
+  '\n'
+].join('');
 
-var source = {
-  root: paths.source,
-  html: path.join(paths.source, paths.html),
-  css: path.join(paths.source, paths.css),
-  js: path.join(paths.source, paths.js),
-  font: path.join(paths.source, paths.font),
-  image: path.join(paths.source, paths.image)
-};
+// BrowserSync
+function browserSync(done) {
+  browsersync.init({
+    server: {
+      baseDir: "./"
+    },
+    port: 3000
+  });
+  done();
+}
 
-var build = {
-  root: paths.build,
-  html: path.join(paths.build, paths.html),
-  css: path.join(paths.build, paths.css),
-  js: path.join(paths.build, paths.js),
-  font: path.join(paths.build, paths.font),
-  image: path.join(paths.build, paths.image)
-};
+// BrowserSync reload
+function browserSyncReload(done) {
+  browsersync.reload();
+  done();
+}
 
-var server = {
-  host: 'localhost',
-  port: '8000'
-};
+// Clean vendor
+function clean() {
+  return del(["./vendor/"]);
+}
 
-gulp.task('html', function(){
-  return gulp.src(path.join(source.html, '**/*.html'))
-  .pipe(gulp.dest(build.html));
-});
+// Bring third party dependencies from node_modules into vendor directory
+function modules() {
+  // Bootstrap
+  var bootstrap = gulp.src('./node_modules/bootstrap/dist/**/*')
+    .pipe(gulp.dest('./vendor/bootstrap'));
+  // Font Awesome CSS
+  var fontAwesomeCSS = gulp.src('./node_modules/@fortawesome/fontawesome-free/css/**/*')
+    .pipe(gulp.dest('./vendor/fontawesome-free/css'));
+  // Font Awesome Webfonts
+  var fontAwesomeWebfonts = gulp.src('./node_modules/@fortawesome/fontawesome-free/webfonts/**/*')
+    .pipe(gulp.dest('./vendor/fontawesome-free/webfonts'));
+  // jQuery Easing
+  var jqueryEasing = gulp.src('./node_modules/jquery.easing/*.js')
+    .pipe(gulp.dest('./vendor/jquery-easing'));
+  // jQuery
+  var jquery = gulp.src([
+      './node_modules/jquery/dist/*',
+      '!./node_modules/jquery/dist/core.js'
+    ])
+    .pipe(gulp.dest('./vendor/jquery'));
+  return merge(bootstrap, fontAwesomeCSS, fontAwesomeWebfonts, jquery, jqueryEasing);
+}
 
-gulp.task('css', function(){
-  return gulp.src(path.join(source.css, '**/*.scss'))
-  .pipe(sass().on('error', sass.logError))
-  .pipe(concat('all.min.css'))
-  .pipe(cleanCSS())
-  .pipe(gulp.dest(build.css));
-});
+// CSS task
+function css() {
+  return gulp
+    .src("./scss/**/*.scss")
+    .pipe(plumber())
+    .pipe(sass({
+      outputStyle: "expanded",
+      includePaths: "./node_modules",
+    }))
+    .on("error", sass.logError)
+    .pipe(autoprefixer({
+      cascade: false
+    }))
+    .pipe(header(banner, {
+      pkg: pkg
+    }))
+    .pipe(gulp.dest("./css"))
+    .pipe(rename({
+      suffix: ".min"
+    }))
+    .pipe(cleanCSS())
+    .pipe(gulp.dest("./css"))
+    .pipe(browsersync.stream());
+}
 
-gulp.task('js', function(){
-  return gulp.src(path.join(source.js, '**/*.coffee'))
-  .pipe(coffee())
-  .pipe(uglify())
-  .pipe(concat('all.min.js'))
-  .pipe(gulp.dest(build.js));
-});
+// JS task
+function js() {
+  return gulp
+    .src([
+      './js/*.js',
+      '!./js/*.min.js'
+    ])
+    .pipe(uglify())
+    .pipe(header(banner, {
+      pkg: pkg
+    }))
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest('./js'))
+    .pipe(browsersync.stream());
+}
 
-gulp.task('font', function(){
-  return gulp.src(path.join(source.font, '**/*'))
-  .pipe(gulp.dest(build.font));
-});
+// Watch files
+function watchFiles() {
+  gulp.watch("./scss/**/*", css);
+  gulp.watch(["./js/**/*", "!./js/**/*.min.js"], js);
+  gulp.watch("./**/*.html", browserSyncReload);
+}
 
-gulp.task('image', function(){
-  var glob = '**/*.+(jpg|jpeg|png|gif|svg)';
-  return gulp.src(path.join(source.image, glob))
-  .pipe(imagemin())
-  .pipe(gulp.dest(build.image));
-});
+// Define complex tasks
+const vendor = gulp.series(clean, modules);
+const build = gulp.series(vendor, gulp.parallel(css, js));
+const watch = gulp.series(build, gulp.parallel(watchFiles, browserSync));
 
-gulp.task('clean', function(callback){
-  return del([build.root], callback);
-});
-
-gulp.task('webserver', function(){
-  gulp.src(build.root)
-  .pipe(webserver({
-    host: server.host,
-    port: server.port,
-    livereload: true
-  }));
-});
-
-gulp.task('watch', function(){
-  gulp.watch(path.join(source.html, '**/*.html'), ['html']);
-  gulp.watch(path.join(source.css, '**/*.scss'), ['css']);
-  gulp.watch(path.join(source.js, '**/*.coffee'), ['js']);
-});
-
-gulp.task('build', function(callback){
-  runSequence(
-    'clean',
-    ['html', 'css', 'js', 'font', 'image'],
-    callback
-  );
-});
-
-gulp.task('start', function(callback) {
-  runSequence(
-    'build',
-    'webserver',
-    'watch',
-    callback
-  );
-});
+// Export tasks
+exports.css = css;
+exports.js = js;
+exports.clean = clean;
+exports.vendor = vendor;
+exports.build = build;
+exports.watch = watch;
+exports.default = build;

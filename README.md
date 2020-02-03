@@ -1,11 +1,6 @@
-# hirokazukiyomaru.com
+# [hirokazukiyomaru.com](http://hirokazukiyomaru.com)
 
-## Preparation
-
-* Node.js	: v7.4.0
-* npm	: 4.6.1
-
-## Getting started
+## Installation
 
 ```
 $ npm install
@@ -14,11 +9,10 @@ $ npm install
 ## Run
 
 ```
-$ npm run start
+$ npm start
 ```
 
-## Build
+## Copyright and License
 
-```
-$ npm run build
-```
+Copyright 2013-2019 Blackrock Digital LLC.
+Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-resume/blob/gh-pages/LICENSE) license.

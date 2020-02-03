@@ -1,27 +1,50 @@
 {
-  "name": "hirokazukiyomaru.com",
-  "version": "1.0.0",
-  "description": "Self-introduction page",
-  "main": "index.js",
-  "scripts": {
-    "build": "gulp build",
-    "start": "gulp start",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Hirokazu Kiyomaru",
-  "license": "MIT",
-  "devDependencies": {
-    "del": "^2.2.2",
-    "gulp": "^3.9.1",
-    "gulp-clean-css": "^2.0.13",
-    "gulp-coffee": "^2.3.2",
-    "gulp-concat": "^2.6.0",
-    "gulp-imagemin": "^3.0.3",
-    "gulp-plumber": "^1.1.0",
-    "gulp-sass": "^2.3.2",
-    "gulp-uglify": "^2.0.0",
-    "gulp-webserver": "^0.9.1",
-    "path": "^0.12.7",
-    "run-sequence": "^1.2.2"
-  }
+    "title": "Resume",
+    "name": "startbootstrap-resume",
+    "version": "5.0.8",
+    "scripts": {
+        "start": "node_modules/.bin/gulp watch"
+    },
+    "description": "Resume is a simple, yet elegant resume and CV theme for Bootstrap 4.",
+    "keywords": [
+        "css",
+        "sass",
+        "html",
+        "responsive",
+        "theme",
+        "template"
+    ],
+    "homepage": "https://startbootstrap.com/template-overviews/resume",
+    "bugs": {
+        "url": "https://github.com/BlackrockDigital/startbootstrap-resume/issues",
+        "email": "feedback@startbootstrap.com"
+    },
+    "license": "MIT",
+    "author": "Start Bootstrap",
+    "contributors": [
+        "David Miller (http://davidmiller.io/)"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/BlackrockDigital/startbootstrap-resume.git"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "5.10.2",
+        "bootstrap": "4.3.1",
+        "jquery": "3.4.1",
+        "jquery.easing": "^1.4.1"
+    },
+    "devDependencies": {
+        "browser-sync": "2.26.7",
+        "del": "5.1.0",
+        "gulp": "4.0.2",
+        "gulp-autoprefixer": "7.0.0",
+        "gulp-clean-css": "4.2.0",
+        "gulp-header": "2.0.9",
+        "gulp-plumber": "^1.2.1",
+        "gulp-rename": "1.4.0",
+        "gulp-sass": "4.0.2",
+        "gulp-uglify": "3.0.2",
+        "merge-stream": "2.0.0"
+    }
 }
