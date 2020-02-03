@@ -1,27 +1,23 @@
 {
   "name": "hirokazukiyomaru.com",
-  "version": "1.0.0",
-  "description": "Self-introduction page",
+  "version": "1.0.1",
+  "description": "my web page",
   "main": "index.js",
   "scripts": {
-    "build": "gulp build",
-    "start": "gulp start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Hirokazu Kiyomaru",
   "license": "MIT",
   "devDependencies": {
-    "del": "^2.2.2",
-    "gulp": "^3.9.1",
-    "gulp-clean-css": "^2.0.13",
-    "gulp-coffee": "^2.3.2",
-    "gulp-concat": "^2.6.0",
-    "gulp-imagemin": "^3.0.3",
-    "gulp-plumber": "^1.1.0",
-    "gulp-sass": "^2.3.2",
-    "gulp-uglify": "^2.0.0",
-    "gulp-webserver": "^0.9.1",
-    "path": "^0.12.7",
-    "run-sequence": "^1.2.2"
+    "browser-sync": "^2.26.7",
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "gulp-uglify": "^3.0.2",
+    "typescript": "^3.7.5"
   }
 }

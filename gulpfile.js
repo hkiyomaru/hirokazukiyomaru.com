@@ -1,20 +1,15 @@
-'use strict';
+const {src, dest, parallel, series, watch} = require('gulp');
+const del = require('del');
+const path = require('path');
+const sass = require("gulp-sass");
+const cleanCSS = require('gulp-clean-css');
+const concat = require('gulp-concat');
+const ts = require('gulp-typescript');
+const uglify = require('gulp-uglify');
+const imagemin = require('gulp-imagemin');
+const browserSync  = require('browser-sync');
 
-var del = require('del');
-var path = require('path');
-var gulp = require('gulp');
-var plumber = require('gulp-plumber');
-var uglify = require('gulp-uglify');
-var sass = require('gulp-sass');
-var cleanCSS = require('gulp-clean-css')
-var concat = require('gulp-concat');
-var coffee = require('gulp-coffee');
-var imagemin = require('gulp-imagemin');
-var webserver = require('gulp-webserver');
-var runSequence = require('run-sequence');
-
-
-var paths = {
+const paths = {
   source: 'source',
   build: 'build',
   html: '',
@@ -24,7 +19,39 @@ var paths = {
   image: 'images',
 };
 
-var source = {
+const CONF = {
+  HTML: {
+    SOURCE: path.join(paths.source, paths.html, '**/*.html'),
+    TARGET: path.join(paths.build, paths.html)
+  },
+  SASS: {
+    SOURCE: path.join(paths.source, paths.css, '**/*.scss'),
+    TARGET: path.join(paths.build, paths.css)
+  },
+  'TS': {
+    SOURCE: path.join(paths.source, paths.js, '**/*.ts'),
+    TARGET: path.join(paths.build, paths.js)
+  },
+  'FONT': {
+    SOURCE: path.join(paths.source, paths.font, '**/*'),
+    TARGET: path.join(paths.build, paths.font)
+  },
+  'IMAGE': {
+    SOURCE: path.join(paths.source, paths.image, '**/*.+(jpg|jpeg|png|gif|svg)'),
+    TARGET: path.join(paths.build, paths.image)
+  },
+  BROWSERSYNC: {
+    DOCUMENT_ROOT: paths.build,
+    INDEX: 'index.html',
+    GHOSTMODE: {
+      clicks : false,
+      forms  : false,
+      scroll : false,
+    }
+  }
+};
+
+const source = {
   root: paths.source,
   html: path.join(paths.source, paths.html),
   css: path.join(paths.source, paths.css),
@@ -33,7 +60,7 @@ var source = {
   image: path.join(paths.source, paths.image)
 };
 
-var build = {
+const build = {
   root: paths.build,
   html: path.join(paths.build, paths.html),
   css: path.join(paths.build, paths.css),
@@ -42,76 +69,87 @@ var build = {
   image: path.join(paths.build, paths.image)
 };
 
-var server = {
+const server = {
   host: 'localhost',
   port: '8000'
 };
 
-gulp.task('html', function(){
-  return gulp.src(path.join(source.html, '**/*.html'))
-  .pipe(gulp.dest(build.html));
-});
+const browserSyncOption = {
+  port: 8000,
+  server: {
+    baseDir: build.root,
+    index: 'index.html',
+  },
+  ghostMode: {
+    clicks : false,
+    forms  : false,
+    scroll : false,
+  },
+  reloadOnRestart: true,
+};
 
-gulp.task('css', function(){
-  return gulp.src(path.join(source.css, '**/*.scss'))
-  .pipe(sass().on('error', sass.logError))
-  .pipe(concat('all.min.css'))
-  .pipe(cleanCSS())
-  .pipe(gulp.dest(build.css));
-});
+function html(){
+  return src(path.join(source.html, '**/*.html'))
+    .pipe(dest(build.html))
+}
 
-gulp.task('js', function(){
-  return gulp.src(path.join(source.js, '**/*.coffee'))
-  .pipe(coffee())
-  .pipe(uglify())
-  .pipe(concat('all.min.js'))
-  .pipe(gulp.dest(build.js));
-});
+function css(){
+  return src(path.join(source.css, '**/*.scss'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(concat('all.min.css'))
+    .pipe(cleanCSS())
+    .pipe(dest(build.css))
+}
 
-gulp.task('font', function(){
-  return gulp.src(path.join(source.font, '**/*'))
-  .pipe(gulp.dest(build.font));
-});
+function typescript(){
+  return src(path.join(source.js, '**/*.ts'))
+    .pipe(ts({
+      noImplicitAny: true,
+      outFile: 'all.min.js'
+    }))
+    .pipe(uglify())
+    .pipe(dest(build.js))
+}
 
-gulp.task('image', function(){
-  var glob = '**/*.+(jpg|jpeg|png|gif|svg)';
-  return gulp.src(path.join(source.image, glob))
-  .pipe(imagemin())
-  .pipe(gulp.dest(build.image));
-});
+function font(){
+  return src(path.join(source.font, '**/*'))
+  .pipe(dest(build.font));
+}
 
-gulp.task('clean', function(callback){
+function image(){
+  const glob = '**/*.+(jpg|jpeg|png|gif|svg)';
+  return src(path.join(source.image, glob))
+    .pipe(imagemin())
+    .pipe(dest(build.image));
+}
+
+function clean(callback){
   return del([build.root], callback);
-});
+}
 
-gulp.task('webserver', function(){
-  gulp.src(build.root)
-  .pipe(webserver({
-    host: server.host,
-    port: server.port,
-    livereload: true
-  }));
-});
+function browsersync(done) {
+  browserSync.init(browserSyncOption);
+  done();
+}
 
-gulp.task('watch', function(){
-  gulp.watch(path.join(source.html, '**/*.html'), ['html']);
-  gulp.watch(path.join(source.css, '**/*.scss'), ['css']);
-  gulp.watch(path.join(source.js, '**/*.coffee'), ['js']);
-});
+function watchFiles(done) {
+  const browserReload = () => {
+    browserSync.reload();
+    done();
+  };
+  watch(CONF.BROWSERSYNC.DOCUMENT_ROOT + '/**/*.html').on('change', series(browserReload));
+  watch(CONF.SASS.SOURCE).on('change', series(css, browserReload));
+  watch(CONF.TS.SOURCE).on('change', series(typescript, browserReload));
+}
 
-gulp.task('build', function(callback){
-  runSequence(
-    'clean',
-    ['html', 'css', 'js', 'font', 'image'],
-    callback
-  );
-});
+exports.clean = clean;
+exports.build = series(
+    clean,
+    parallel(html, css, typescript, font, image),
+);
+exports.start = series(
+    exports.build,
+    series(browsersync, watchFiles)
+);
+exports.default = exports.start;
 
-gulp.task('start', function(callback) {
-  runSequence(
-    'build',
-    'webserver',
-    'watch',
-    callback
-  );
-});
