@@ -1,9 +1,4 @@
-# hirokazukiyomaru.com
-
-## Requirements
-
-* Node.js: v11.1.0
-* npm: 6.13.7
+# [hirokazukiyomaru.com](http://hirokazukiyomaru.com)
 
 ## Installation
 
@@ -11,8 +6,13 @@
 $ npm install
 ```
 
-## Build
+## Run
 
 ```
-$ npx gulp
+$ npm start
 ```
+
+## Copyright and License
+
+Copyright 2013-2019 Blackrock Digital LLC.
+Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-resume/blob/gh-pages/LICENSE) license.
