@@ -6,7 +6,6 @@ const cleanCSS = require('gulp-clean-css');
 const concat = require('gulp-concat');
 const postcss = require("gulp-postcss");
 const autoprefixer = require("autoprefixer");
-const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
 const browserSync  = require('browser-sync');
 
@@ -42,7 +41,7 @@ const CONF = {
     OUTPUT: path.join(paths.build, paths.image)
   },
   BROWSERSYNC: {
-    DOCUMENT_ROOT: paths.build,
+    DOCUMENT_ROOT: paths.source,
     INDEX: 'index.html',
     GHOSTMODE: {
       clicks : false,
@@ -89,7 +88,6 @@ function css(){
 function javascript(){
   return src(CONF.JS.SOURCE)
     .pipe(concat('all.min.js'))
-    .pipe(uglify())
     .pipe(dest(CONF.JS.OUTPUT))
 }
 
@@ -118,7 +116,7 @@ function watchFiles(done) {
     browserSync.reload();
     done();
   };
-  watch(CONF.BROWSERSYNC.DOCUMENT_ROOT + '/**/*.html').on('change', series(browserReload));
+  watch(CONF.BROWSERSYNC.DOCUMENT_ROOT + '/**/*.html').on('change', series(html, browserReload));
   watch(CONF.SASS.SOURCE).on('change', series(css, browserReload));
   watch(CONF.JS.SOURCE).on('change', series(javascript, browserReload));
 }

@@ -19,7 +19,6 @@
     "gulp-imagemin": "^7.1.0",
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.0.2",
-    "gulp-uglify": "^3.0.2",
     "jquery": "^3.4.1",
     "popper.js": "^1.16.1"
   }
