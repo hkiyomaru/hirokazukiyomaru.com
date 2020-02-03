@@ -4,7 +4,8 @@ const path = require('path');
 const sass = require("gulp-sass");
 const cleanCSS = require('gulp-clean-css');
 const concat = require('gulp-concat');
-const ts = require('gulp-typescript');
+const postcss = require("gulp-postcss");
+const autoprefixer = require("autoprefixer");
 const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
 const browserSync  = require('browser-sync');
@@ -22,23 +23,23 @@ const paths = {
 const CONF = {
   HTML: {
     SOURCE: path.join(paths.source, paths.html, '**/*.html'),
-    TARGET: path.join(paths.build, paths.html)
+    OUTPUT: path.join(paths.build, paths.html)
   },
   SASS: {
     SOURCE: path.join(paths.source, paths.css, '**/*.scss'),
-    TARGET: path.join(paths.build, paths.css)
+    OUTPUT: path.join(paths.build, paths.css)
   },
-  'TS': {
-    SOURCE: path.join(paths.source, paths.js, '**/*.ts'),
-    TARGET: path.join(paths.build, paths.js)
+  JS: {
+    SOURCE: path.join(paths.source, paths.js, '**/*.js'),
+    OUTPUT: path.join(paths.build, paths.js)
   },
-  'FONT': {
+  FONT: {
     SOURCE: path.join(paths.source, paths.font, '**/*'),
-    TARGET: path.join(paths.build, paths.font)
+    OUTPUT: path.join(paths.build, paths.font)
   },
-  'IMAGE': {
+  IMAGE: {
     SOURCE: path.join(paths.source, paths.image, '**/*.+(jpg|jpeg|png|gif|svg)'),
-    TARGET: path.join(paths.build, paths.image)
+    OUTPUT: path.join(paths.build, paths.image)
   },
   BROWSERSYNC: {
     DOCUMENT_ROOT: paths.build,
@@ -51,33 +52,14 @@ const CONF = {
   }
 };
 
-const source = {
-  root: paths.source,
-  html: path.join(paths.source, paths.html),
-  css: path.join(paths.source, paths.css),
-  js: path.join(paths.source, paths.js),
-  font: path.join(paths.source, paths.font),
-  image: path.join(paths.source, paths.image)
-};
-
-const build = {
-  root: paths.build,
-  html: path.join(paths.build, paths.html),
-  css: path.join(paths.build, paths.css),
-  js: path.join(paths.build, paths.js),
-  font: path.join(paths.build, paths.font),
-  image: path.join(paths.build, paths.image)
-};
-
-const server = {
-  host: 'localhost',
-  port: '8000'
+const bootstrapSass = {
+  SOURCE: 'node_modules/bootstrap/scss'
 };
 
 const browserSyncOption = {
   port: 8000,
   server: {
-    baseDir: build.root,
+    baseDir: paths.build,
     index: 'index.html',
   },
   ghostMode: {
@@ -89,42 +71,41 @@ const browserSyncOption = {
 };
 
 function html(){
-  return src(path.join(source.html, '**/*.html'))
-    .pipe(dest(build.html))
+  return src(CONF.HTML.SOURCE)
+    .pipe(dest(CONF.HTML.OUTPUT))
 }
 
 function css(){
-  return src(path.join(source.css, '**/*.scss'))
-    .pipe(sass().on('error', sass.logError))
+  return src(CONF.SASS.SOURCE)
+    .pipe(sass({
+      'includePaths': [bootstrapSass.SOURCE]
+    }))
+    .pipe(postcss([autoprefixer()]))
     .pipe(concat('all.min.css'))
     .pipe(cleanCSS())
-    .pipe(dest(build.css))
+    .pipe(dest(CONF.SASS.OUTPUT))
 }
 
-function typescript(){
-  return src(path.join(source.js, '**/*.ts'))
-    .pipe(ts({
-      noImplicitAny: true,
-      outFile: 'all.min.js'
-    }))
+function javascript(){
+  return src(CONF.JS.SOURCE)
+    .pipe(concat('all.min.js'))
     .pipe(uglify())
-    .pipe(dest(build.js))
+    .pipe(dest(CONF.JS.OUTPUT))
 }
 
 function font(){
-  return src(path.join(source.font, '**/*'))
-  .pipe(dest(build.font));
+  return src(CONF.FONT.SOURCE)
+  .pipe(dest(CONF.FONT.OUTPUT));
 }
 
 function image(){
-  const glob = '**/*.+(jpg|jpeg|png|gif|svg)';
-  return src(path.join(source.image, glob))
+  return src(CONF.IMAGE.SOURCE)
     .pipe(imagemin())
-    .pipe(dest(build.image));
+    .pipe(dest(CONF.IMAGE.OUTPUT));
 }
 
 function clean(callback){
-  return del([build.root], callback);
+  return del([paths.build], callback);
 }
 
 function browsersync(done) {
@@ -139,17 +120,16 @@ function watchFiles(done) {
   };
   watch(CONF.BROWSERSYNC.DOCUMENT_ROOT + '/**/*.html').on('change', series(browserReload));
   watch(CONF.SASS.SOURCE).on('change', series(css, browserReload));
-  watch(CONF.TS.SOURCE).on('change', series(typescript, browserReload));
+  watch(CONF.JS.SOURCE).on('change', series(javascript, browserReload));
 }
 
 exports.clean = clean;
 exports.build = series(
     clean,
-    parallel(html, css, typescript, font, image),
+    parallel(html, css, javascript, font, image),
 );
 exports.start = series(
     exports.build,
     series(browsersync, watchFiles)
 );
 exports.default = exports.start;
-
