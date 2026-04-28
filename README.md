@@ -1,13 +1,18 @@
-# [hirokazukiyomaru.com](http://hirokazukiyomaru.com)
+# hirokazukiyomaru.com
 
-## Installation
+Personal website for Hirokazu Kiyomaru.
 
+## Development
+
+```sh
+npm install
+npm run dev
 ```
-$ npm install
-```
 
-## Run
+`npm install` will create a fresh `package-lock.json`.
 
-```
-$ npm start
+## Build
+
+```sh
+npm run build
 ```
