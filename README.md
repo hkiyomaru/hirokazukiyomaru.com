@@ -16,3 +16,7 @@ npm run dev
 ```sh
 npm run build
 ```
+
+## Deploy
+
+Push to `master` to build and deploy the site to GitHub Pages.
