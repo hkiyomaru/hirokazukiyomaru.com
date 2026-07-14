@@ -7,6 +7,7 @@
       name="description"
       content="Hirokazu Kiyomaru is a researcher at the National Institute of Informatics working on natural language processing."
     />
+    <meta name="theme-color" content="#ffffff" />
     <title>Hirokazu Kiyomaru</title>
     <link rel="stylesheet" href="src/styles.css" />
     <script type="module" src="src/main.js"></script>
@@ -14,9 +15,7 @@
   <body>
     <header class="site-header">
       <div class="header-inner">
-        <a class="brand" href="#top" aria-label="Hirokazu Kiyomaru home">
-          <span>Hirokazu Kiyomaru</span>
-        </a>
+        <a class="brand" href="#top" aria-label="Hirokazu Kiyomaru home">Hirokazu Kiyomaru</a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
           <span></span>
           <span></span>
@@ -24,9 +23,8 @@
           <span class="sr-only">Toggle navigation</span>
         </button>
         <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
-          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
           <a href="#education">Education</a>
-          <a href="#experience">Work Experience</a>
           <a href="#publications">Publications</a>
           <a href="#awards">Awards</a>
         </nav>
@@ -34,8 +32,9 @@
     </header>
 
     <main id="top">
-      <section class="hero section" id="about">
+      <section class="hero" id="about">
         <div class="hero-copy">
+          <p class="eyebrow">Researcher &middot; Natural Language Processing</p>
           <h1>Hirokazu Kiyomaru</h1>
           <p class="lead">
             I am a researcher at the Research and Development Center for Large Language Models
@@ -64,175 +63,179 @@
 
       <section class="section" id="experience">
         <div class="section-heading">
+          <span class="index" aria-hidden="true">01</span>
           <h2>Work Experience</h2>
         </div>
         <div class="timeline">
           <article class="timeline-item">
+            <time>April 2024 &ndash; Present</time>
             <div>
               <h3>Project Assistant Professor</h3>
               <p>National Institute of Informatics, Tokyo</p>
             </div>
-            <time>April 2024 - Present</time>
           </article>
           <article class="timeline-item">
+            <time>April 2022 &ndash; March 2024</time>
             <div>
               <h3>Project Researcher</h3>
               <p>Kyoto University, Kyoto</p>
             </div>
-            <time>April 2022 - March 2024</time>
           </article>
           <article class="timeline-item">
+            <time>September 2017</time>
             <div>
               <h3>Intern</h3>
               <p>Cookpad, Tokyo</p>
             </div>
-            <time>September 2017</time>
           </article>
           <article class="timeline-item">
+            <time>August 2017</time>
             <div>
               <h3>Intern</h3>
               <p>Wantedly, Tokyo</p>
             </div>
-            <time>August 2017</time>
           </article>
           <article class="timeline-item">
+            <time>March 2016</time>
             <div>
               <h3>Intern</h3>
               <p>Dwango Artificial Intelligence Laboratory, Tokyo</p>
             </div>
-            <time>March 2016</time>
           </article>
         </div>
       </section>
 
       <section class="section" id="education">
         <div class="section-heading">
+          <span class="index" aria-hidden="true">02</span>
           <h2>Education</h2>
         </div>
         <div class="timeline">
           <article class="timeline-item">
+            <time>April 2019 &ndash; March 2022</time>
             <div>
               <h3>Kyoto University</h3>
               <p>Ph.D.</p>
               <p>Supervisor: <a href="http://nlp.ist.i.kyoto-u.ac.jp/member/kuro/index.html">Sadao Kurohashi</a></p>
             </div>
-            <time>April 2019 - March 2022</time>
           </article>
           <article class="timeline-item">
+            <time>April 2017 &ndash; March 2019</time>
             <div>
               <h3>Kyoto University</h3>
-              <p>M.D.</p>
+              <p>M.S.</p>
               <p>Supervisor: <a href="http://nlp.ist.i.kyoto-u.ac.jp/member/kuro/index.html">Sadao Kurohashi</a></p>
             </div>
-            <time>April 2017 - March 2019</time>
           </article>
           <article class="timeline-item">
+            <time>April 2013 &ndash; March 2017</time>
             <div>
               <h3>Doshisha University</h3>
-              <p>B.D.</p>
+              <p>B.S.</p>
               <p>Supervisor: <a href="https://book.mkats.net/">Marie Katsurai</a></p>
             </div>
-            <time>April 2013 - March 2017</time>
           </article>
           <article class="timeline-item">
+            <time>April 2010 &ndash; March 2013</time>
             <div>
               <h3>Fukuyama Seishikan High School</h3>
             </div>
-            <time>April 2010 - March 2013</time>
           </article>
         </div>
       </section>
 
       <section class="section" id="publications">
         <div class="section-heading">
+          <span class="index" aria-hidden="true">03</span>
           <h2>Publications</h2>
         </div>
         <div class="publication-list">
           <article class="publication">
-            <p>Hirokazu Kiyomaru, Yusuke Oda, Takashi Kodama, Chaoran Liu, and Daisuke Kawahara.</p>
             <h3>Scaling Data-Constrained Language Models with Synthetic Data</h3>
-            <p>In Findings of the Association for Computational Linguistics: EACL 2026, Rabat, Morocco, March 2026.</p>
+            <p class="authors"><strong>Hirokazu Kiyomaru</strong>, Yusuke Oda, Takashi Kodama, Chaoran Liu, and Daisuke Kawahara.</p>
+            <p class="venue">In Findings of the Association for Computational Linguistics: EACL 2026, Rabat, Morocco, March 2026.</p>
           </article>
           <article class="publication">
-            <p>Yusuke Nakamura, Hirokazu Kiyomaru, Chaoran Liu, Shuhei Kurita, and Daisuke Kawahara.</p>
             <h3>Demystifying Mixed Outcomes of Self-Training: Pre-training Analyses on Non-Toy LLMs</h3>
-            <p>In Findings of the Association for Computational Linguistics: EACL 2026, Rabat, Morocco, March 2026.</p>
+            <p class="authors">Yusuke Nakamura, <strong>Hirokazu Kiyomaru</strong>, Chaoran Liu, Shuhei Kurita, and Daisuke Kawahara.</p>
+            <p class="venue">In Findings of the Association for Computational Linguistics: EACL 2026, Rabat, Morocco, March 2026.</p>
           </article>
           <article class="publication">
-            <p>Shiho Matta, Yin Jou Huang, Fei Cheng, Hirokazu Kiyomaru, and Yugo Murawaki.</p>
             <h3>Optimizing Cost-Efficiency with LLM-Generated Training Data for Conversational Semantic Frame Analysis</h3>
-            <p>In Proceedings of the 9th Joint SIGHUM Workshop on Computational Linguistics for Cultural Heritage, Social Sciences, Humanities and Literature (LaTeCH-CLfL 2025), Albuquerque, New Mexico, May 2025.</p>
+            <p class="authors">Shiho Matta, Yin Jou Huang, Fei Cheng, <strong>Hirokazu Kiyomaru</strong>, and Yugo Murawaki.</p>
+            <p class="venue">In Proceedings of the 9th Joint SIGHUM Workshop on Computational Linguistics for Cultural Heritage, Social Sciences, Humanities and Literature (LaTeCH-CLfL 2025), Albuquerque, New Mexico, May 2025.</p>
           </article>
           <article class="publication">
-            <p>Takashi Kodama, Hirokazu Kiyomaru, Yin Jou Huang, and Sadao Kurohashi.</p>
             <h3>RecomMind: Movie Recommendation Dialogue with Seeker's Internal State</h3>
-            <p>In Proceedings of the Second Workshop on Social Influence in Conversations (SICon 2024), Miami, Florida, USA, November 2024.</p>
+            <p class="authors">Takashi Kodama, <strong>Hirokazu Kiyomaru</strong>, Yin Jou Huang, and Sadao Kurohashi.</p>
+            <p class="venue">In Proceedings of the Second Workshop on Social Influence in Conversations (SICon 2024), Miami, Florida, USA, November 2024.</p>
           </article>
           <article class="publication">
-            <p>Hirokazu Kiyomaru, Issa Sugiura, Daisuke Kawahara, and Sadao Kurohashi.</p>
             <h3>A Comprehensive Analysis of Memorization in Large Language Models</h3>
-            <p>In Proceedings of the 17th International Natural Language Generation Conference (INLG), Tokyo, Japan, September 2024.</p>
+            <p class="authors"><strong>Hirokazu Kiyomaru</strong>, Issa Sugiura, Daisuke Kawahara, and Sadao Kurohashi.</p>
+            <p class="venue">In Proceedings of the 17th International Natural Language Generation Conference (INLG), Tokyo, Japan, September 2024.</p>
           </article>
           <article class="publication">
-            <p>Rikito Takahashi, Hirokazu Kiyomaru, Chenhui Chu and Sadao Kurohashi.</p>
             <h3>Abstractive Multi-Video Captioning: Benchmark Dataset Construction and Extensive Evaluation</h3>
-            <p>In Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING), Torino, Italia, May 2024.</p>
+            <p class="authors">Rikito Takahashi, <strong>Hirokazu Kiyomaru</strong>, Chenhui Chu and Sadao Kurohashi.</p>
+            <p class="venue">In Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING), Torino, Italia, May 2024.</p>
           </article>
           <article class="publication">
-            <p>Tatsuro Inaba, Hirokazu Kiyomaru, Fei Cheng, and Sadao Kurohashi.</p>
             <h3>MultiTool-CoT: GPT-3 Can Use Multiple External Tools with Chain of Thought Prompting</h3>
-            <p>In Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL), Toronto, Canada, July 2023.</p>
+            <p class="authors">Tatsuro Inaba, <strong>Hirokazu Kiyomaru</strong>, Fei Cheng, and Sadao Kurohashi.</p>
+            <p class="venue">In Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL), Toronto, Canada, July 2023.</p>
           </article>
           <article class="publication">
-            <p>Nobuhiro Ueda, Kazumasa Omura, Takashi Kodama, Hirokazu Kiyomaru, Yugo Murawaki, Daisuke Kawahara and Sadao Kurohashi.</p>
             <h3>KWJA: A Unified Japanese Analyzer Based on Foundation Models</h3>
-            <p>In Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL): System Demonstrations, Toronto, Canada, July 2023.</p>
+            <p class="authors">Nobuhiro Ueda, Kazumasa Omura, Takashi Kodama, <strong>Hirokazu Kiyomaru</strong>, Yugo Murawaki, Daisuke Kawahara and Sadao Kurohashi.</p>
+            <p class="venue">In Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL): System Demonstrations, Toronto, Canada, July 2023.</p>
           </article>
           <article class="publication">
-            <p>Takashi Kodama, Hirokazu Kiyomaru, Yin Jou Huang, Taro Okahisa, and Sadao Kurohashi.</p>
             <h3>Is a Knowledge-based Response Engaging?: An Analysis on Knowledge-Grounded Dialogue with Information Source Annotation</h3>
-            <p>In Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL): Student Research Workshop, Toronto, Canada, July 2023.</p>
+            <p class="authors">Takashi Kodama, <strong>Hirokazu Kiyomaru</strong>, Yin Jou Huang, Taro Okahisa, and Sadao Kurohashi.</p>
+            <p class="venue">In Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL): Student Research Workshop, Toronto, Canada, July 2023.</p>
           </article>
           <article class="publication">
-            <p>Hirokazu Kiyomaru and Sadao Kurohashi.</p>
             <h3>Minimally-Supervised Joint Learning of Event Volitionality and Subject Animacy Classification</h3>
-            <p>In Proceedings of the AAAI Conference on Artificial Intelligence, 36(10), pp. 10921-10929, Online, February 2022.</p>
+            <p class="authors"><strong>Hirokazu Kiyomaru</strong> and Sadao Kurohashi.</p>
+            <p class="venue">In Proceedings of the AAAI Conference on Artificial Intelligence, 36(10), pp. 10921-10929, Online, February 2022.</p>
           </article>
           <article class="publication">
-            <p>Hirokazu Kiyomaru and Sadao Kurohashi.</p>
-            <h3>Contextualized and Generalized Sentence Representations by Contrastive Self-Supervised Learning: A Case Study on Discourse Relation Analysis.</h3>
-            <p>In Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL-HLT), pp. 5578-5584, Online, June 2021.</p>
+            <h3>Contextualized and Generalized Sentence Representations by Contrastive Self-Supervised Learning: A Case Study on Discourse Relation Analysis</h3>
+            <p class="authors"><strong>Hirokazu Kiyomaru</strong> and Sadao Kurohashi.</p>
+            <p class="venue">In Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL-HLT), pp. 5578-5584, Online, June 2021.</p>
           </article>
           <article class="publication">
-            <p>Akiko Aizawa, Frederic Bergeron, Junjie Chen, Fei Cheng, Katsuhiko Hayashi, Kentaro Inui, Daisuke Kawahara, Masaru Kitsuregawa, Hirokazu Kiyomaru, and others.</p>
-            <h3>A System for Worldwide COVID-19 Information Aggregation.</h3>
-            <p>In Proceedings of the 1st Workshop on NLP for COVID-19 (Part 2) at EMNLP 2020, Online, December 2020.</p>
+            <h3>A System for Worldwide COVID-19 Information Aggregation</h3>
+            <p class="authors">Akiko Aizawa, Frederic Bergeron, Junjie Chen, Fei Cheng, Katsuhiko Hayashi, Kentaro Inui, Daisuke Kawahara, Masaru Kitsuregawa, <strong>Hirokazu Kiyomaru</strong>, and others.</p>
+            <p class="venue">In Proceedings of the 1st Workshop on NLP for COVID-19 (Part 2) at EMNLP 2020, Online, December 2020.</p>
           </article>
           <article class="publication">
-            <p>Hirokazu Kiyomaru, Kazumasa Omura, Yugo Murawaki, Daisuke Kawahara and Sadao Kurohashi.</p>
-            <h3>Diversity-aware Event Prediction based on a Conditional Variational Autoencoder with Reconstruction.</h3>
-            <p>In Proceedings of the First Workshop on Commonsense Inference in Natural Language Processing (COIN), pp. 113-122, Hong Kong, China, November 2019.</p>
+            <h3>Diversity-aware Event Prediction based on a Conditional Variational Autoencoder with Reconstruction</h3>
+            <p class="authors"><strong>Hirokazu Kiyomaru</strong>, Kazumasa Omura, Yugo Murawaki, Daisuke Kawahara and Sadao Kurohashi.</p>
+            <p class="venue">In Proceedings of the First Workshop on Commonsense Inference in Natural Language Processing (COIN), pp. 113-122, Hong Kong, China, November 2019.</p>
           </article>
           <article class="publication">
-            <p>Katsuyoshi Yamagami, Hirokazu Kiyomaru and Sadao Kurohashi.</p>
-            <h3>Knowledge-based Dialog Approach for Exploring User's Intention.</h3>
-            <p>In Proceedings of FAIM/ISCA Workshop on Artificial Intelligence for Multimodal Human Robot Interaction, pp. 53-56, Stockholm, Sweden, 2018.</p>
+            <h3>Knowledge-based Dialog Approach for Exploring User's Intention</h3>
+            <p class="authors">Katsuyoshi Yamagami, <strong>Hirokazu Kiyomaru</strong> and Sadao Kurohashi.</p>
+            <p class="venue">In Proceedings of FAIM/ISCA Workshop on Artificial Intelligence for Multimodal Human Robot Interaction, pp. 53-56, Stockholm, Sweden, 2018.</p>
           </article>
           <article class="publication">
-            <p>Naoki Otani, Hirokazu Kiyomaru, Daisuke Kawahara and Sadao Kurohashi.</p>
-            <h3>Cross-lingual Knowledge Projection Using Machine Translation and Target-side Knowledge Base Completion.</h3>
-            <p>In Proceedings of the 27th International Conference on Computational Linguistics (COLING), pp. 1508-1520, Santa Fe, New Mexico, US, 2018.</p>
+            <h3>Cross-lingual Knowledge Projection Using Machine Translation and Target-side Knowledge Base Completion</h3>
+            <p class="authors">Naoki Otani, <strong>Hirokazu Kiyomaru</strong>, Daisuke Kawahara and Sadao Kurohashi.</p>
+            <p class="venue">In Proceedings of the 27th International Conference on Computational Linguistics (COLING), pp. 1508-1520, Santa Fe, New Mexico, US, 2018.</p>
           </article>
           <article class="publication">
-            <p>Hirokazu Kiyomaru, Masahiko Osawa and Hiroshi Yamakawa.</p>
-            <h3>BiCAmon: Activity monitoring tool on 3D connecome structures for various cognitive architectures.</h3>
-            <p>In Proceedings of Neuroinformatics 2016, pp 49-53, Reading, United Kingdom, 2016.</p>
+            <h3>BiCAmon: Activity monitoring tool on 3D connecome structures for various cognitive architectures</h3>
+            <p class="authors"><strong>Hirokazu Kiyomaru</strong>, Masahiko Osawa and Hiroshi Yamakawa.</p>
+            <p class="venue">In Proceedings of Neuroinformatics 2016, pp 49-53, Reading, United Kingdom, 2016.</p>
           </article>
         </div>
       </section>
 
       <section class="section" id="awards">
         <div class="section-heading">
+          <span class="index" aria-hidden="true">04</span>
           <h2>Awards</h2>
         </div>
         <ul class="award-list">
@@ -245,5 +248,9 @@
         </ul>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2026 Hirokazu Kiyomaru</p>
+    </footer>
   </body>
 </html>
